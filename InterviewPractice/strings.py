@@ -109,3 +109,48 @@ Input: board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], word = "
 Output: false
 """
 
+
+def findWord(board, word):
+
+    # Build map of indices in findWord
+    letterIndexMap = {}
+    for i in range(len(board)):
+        for j in range(len(board[i])):
+            result = findWordHelperDef(board, i, j, word)
+            if result:
+                return True
+    return False
+
+
+# Recursive method for finding if a word can be foudn
+def findWordHelperDef(board, i, j, word):
+    # Base case
+    if len(word) == 0:
+        return True
+
+    if i > len(board) - 1 or i < 0 or j < 0 or j > len(board[i]) - 1:
+        return False
+    if word[0] != board[i][j]:
+        return False
+
+    board[i][j] = "-"
+    return (
+        findWordHelperDef(board, i - 1, j, word[1:])
+        or findWordHelperDef(board, i + 1, j, word[1:])
+        or findWordHelperDef(board, i, j - 1, word[1:])
+        or findWordHelperDef(board, i, j + 1, word[1:])
+    )
+
+
+print(
+    findWord(
+        [["A", "B", "C", "E"], ["S", "F", "C", "S"], ["A", "D", "E", "E"]], "ABCCED"
+    )
+)
+print(
+    findWord([["A", "B", "C", "E"], ["S", "F", "C", "S"], ["A", "D", "E", "E"]], "SEE")
+)
+print(
+    findWord([["A", "B", "C", "E"], ["S", "F", "C", "S"], ["A", "D", "E", "E"]], "ABCB")
+)
+
