@@ -1,6 +1,7 @@
 # Python scratch file for practicing String manipulation interview questions
 
 """ 
+https://igotanoffer.com/blogs/tech/microsoft-software-development-engineer-interview
 Given an input string, reverse the string word by word
 """
 
@@ -24,6 +25,7 @@ def reverseStringByWord2(inputString):
 # print(reverseStringByWord2("Hello from the planet Mars!"))
 
 """
+https://igotanoffer.com/blogs/tech/microsoft-software-development-engineer-interview
 Given an array of integers nums and an integer target, 
 return indices of the two numbers such that they add up to target. 
 You may assume that each input would have exactly one solution, 
@@ -89,3 +91,21 @@ def twoSumHash2(nums, target):
 # print(twoSumHash([3, 2, 4], 6))
 # print(twoSumHash2([2, 7, 11, 15], 9))
 # print(twoSumHash2([3, 2, 4], 6))
+
+"""
+https://igotanoffer.com/blogs/tech/microsoft-software-development-engineer-interview
+Given a 2D board and a word, find if the word exists in the grid. 
+The word can be constructed from letters of sequentially adjacent cell, 
+where "adjacent" cells are those horizontally or vertically neighboring. 
+The same letter cell may not be used more than once.
+
+Input: board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], word = "ABCCED"
+Output: true
+
+Input: board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], word = "SEE"
+Output: true
+
+Input: board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], word = "ABCB"
+Output: false
+"""
+
