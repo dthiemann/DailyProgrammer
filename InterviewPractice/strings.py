@@ -194,7 +194,114 @@ def findSmallestMissingPositiveInteger(nums):
     return n
 
 
-print(findSmallestMissingPositiveInteger([1, 2, 0]))
-print(findSmallestMissingPositiveInteger([3, 4, -1, 1]))
-print(findSmallestMissingPositiveInteger([7, 8, 9, 11, 12]))
+# print(findSmallestMissingPositiveInteger([1, 2, 0]))
+# print(findSmallestMissingPositiveInteger([3, 4, -1, 1]))
+# print(findSmallestMissingPositiveInteger([7, 8, 9, 11, 12]))
 
+"""
+Remove comments from a C++ comment
+
+Given a C++ program, remove comments from it. The program source is an array of strings source where source[i] is the ith line of the source code. This represents the result of splitting the original source code string by the newline character '\n'.
+
+In C++, there are two types of comments, line comments, and block comments.
+
+The string "//" denotes a line comment, which represents that it and the rest of the characters to the right of it in the same line should be ignored.
+The string "/*" denotes a block comment, which represents that all characters until the next (non-overlapping) occurrence of "*/" should be ignored. (Here, occurrences happen in reading order: line by line from left to right.) To be clear, the string "/*/" does not yet end the block comment, as the ending would be overlapping the beginning.
+The first effective comment takes precedence over others.
+
+For example, if the string "//" occurs in a block comment, it is ignored.
+Similarly, if the string "/*" occurs in a line or block comment, it is also ignored.
+If a certain line of code is empty after removing comments, you must not output that line: each string in the answer list will be non-empty.
+
+There will be no control characters, single quote, or double quote characters.
+
+For example, source = "string s = "/* Not a comment. */";" will not be a test case.
+Also, nothing else such as defines or macros will interfere with the comments.
+
+It is guaranteed that every open block comment will eventually be closed, so "/*" outside of a line or block comment always starts a new comment.
+
+Finally, implicit newline characters can be deleted by block comments. Please see the examples below for details.
+
+After removing the comments from the source code, return the source code in the same format.
+
+Examples:
+Input: source = ["/*Test program */", "int main()", "{ ", "  // variable declaration ", "int a, b, c;", "/* This is a test", "   multiline  ", "   comment for ", "   testing */", "a = b + c;", "}"]
+Output: ["int main()","{ ","  ","int a, b, c;","a = b + c;","}"]
+
+Input: source = ["a/*comment", "line", "more_comment*/b"]
+Output: ["ab"]
+"""
+
+
+def removeComments(source):
+    modifiedSource = []
+
+    i = 0
+    while i < len(source):
+        line = source[i]
+        if "//" in line:
+            # line comment
+            if line.startswith("//") == False:
+                modifiedSource.append(line.split("//")[0])
+
+        elif "/*" in line:
+            # block comment
+            startLineIndex = i
+            while "*/" not in source[i]:
+                i += 1
+
+            # Same line block comment
+            if source[startLineIndex].startswith("/*") == False:
+                modifiedSource.append(source[startLineIndex].split("/*")[0])
+
+        else:
+            modifiedSource.append(line)
+
+        i += 1
+
+    return modifiedSource
+
+
+# source1 = [
+#     "/*Test program */",
+#     "int main()",
+#     "{ ",
+#     "  // variable declaration ",
+#     "int a, b, c;",
+#     "/* This is a test",
+#     "   multiline  ",
+#     "   comment for ",
+#     "   testing */",
+#     "a = b + c;",
+#     "}",
+# ]
+# print(removeComments(source1))
+
+"""
+Given a string, find the length of the longest substring T that contains at most k distinct characters.
+
+"aabbcc", k = 1
+Max substring can be any one from {"aa" , "bb" , "cc"}.
+
+"aabbcc", k = 2
+Max substring can be any one from {"aabb" , "bbcc"}.
+
+"aabbcc", k = 3
+There are substrings with exactly 3 unique characters
+{"aabbcc" , "abbcc" , "aabbc" , "abbc" }
+Max is "aabbcc" with length 6.
+"""
+
+
+def findLongestSubStringWithK(givenString, k):
+    subStrings = []
+
+    maxCount = 0
+    startIndex = 0
+    endIndex = 0
+
+    # i = 0
+    # while i < len(givenString):
+    #     if
+
+    return subStrings
