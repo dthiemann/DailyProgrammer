@@ -9,6 +9,24 @@ public class InterviewPrep {
      * Returns a sorted list
      */
     private void mergeSort(List<Integer> integerList) {
+        this.mergeSortHelper(integerList, 0, integerList.size() - 1);
+    }
+
+    private void mergeSortHelper(List<Integer> integerList, int startIndex, int endIndex) {
+        if (endIndex <= startIndex) {
+            return;
+        }
+
+        int middleIndex = (startIndex + endIndex) / 2;
+
+        mergeSortHelper(integerList, startIndex, middleIndex);
+        mergeSortHelper(integerList, middleIndex + 1, endIndex);
+
+        merge(integerList, startIndex, middleIndex, endIndex);
+
+    }
+
+    private void merge(List<Integer> list, int left, int middle, int right) {
 
     }
 
