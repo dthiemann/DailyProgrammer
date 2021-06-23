@@ -68,14 +68,6 @@ public class InterviewPrep {
         }
     }
 
-    private void printList(int[] intList) {
-        System.out.print("[");
-        for (int i = 0; i < intList.length; i++) {
-            System.out.print(intList[i] + ", ");
-        }
-        System.out.print("]\n");
-    }
-
     public void testMergeSort() {
         int[] intList = new int[] { 1, 2, 3, 4, 5, 6, };
         int[] intList2 = new int[] { 6, 5, 4, 3, 2, 1, };
@@ -92,9 +84,72 @@ public class InterviewPrep {
     }
 
     // ******************************** MERGE SORT ********************************
+    // ******************************** QUICK SORT ********************************
+
+    private void quickSort(int[] intArray) {
+        quickSortHelper(intArray, 0, intArray.length - 1);
+    }
+
+    private void quickSortHelper(int[] intArray, int start, int end) {
+        if (start < end) {
+            int pivot = partition(intArray, start, end);
+
+            quickSortHelper(intArray, start, pivot - 1);
+            quickSortHelper(intArray, pivot + 1, end);
+        }
+    }
+
+    private int partition(int[] intArray, int start, int end) {
+        int pivot = intArray[end];
+
+        int i = start;
+        for (int j = start; j < end; j++) {
+            if (intArray[j] < pivot) {
+                swap(intArray, i, j);
+                i = i + 1;
+            }
+        }
+
+        swap(intArray, i, end);
+
+        return i;
+    }
+
+    public void testQuickSort() {
+        int[] intList = new int[] { 1, 2, 3, 4, 5, 6, };
+        int[] intList2 = new int[] { 6, 5, 4, 3, 2, 1, };
+        int[] intList3 = new int[] { 4, 6, 1, 5, 2, 3, };
+
+        this.quickSort(intList);
+        this.quickSort(intList2);
+        this.quickSort(intList3);
+
+        printList(intList);
+        printList(intList2);
+        printList(intList3);
+    }
+
+    /**
+     * Helper methods
+     */
+
+    private void printList(int[] intList) {
+        System.out.print("[");
+        for (int i = 0; i < intList.length; i++) {
+            System.out.print(intList[i] + ", ");
+        }
+        System.out.print("]\n");
+    }
+
+    private void swap(int[] intList, int a, int b) {
+        int temp = intList[a];
+        intList[a] = intList[b];
+        intList[b] = temp;
+    }
 
     public static void main(String args[]) {
         InterviewPrep test = new InterviewPrep();
-        test.testMergeSort();
+        // test.testMergeSort();
+        test.testQuickSort();
     }
 }
