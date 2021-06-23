@@ -56,6 +56,36 @@ public class StringsPractice {
         return true;
     }
 
+    /*
+     * Write a method to replace all spacesi na string with "%20". Use char array
+     * for Java implementation
+     * 
+     * Example: Input: "Mr John Smith    ", 13 Output: "Mr%20John%20Smith"
+     * 
+     */
+
+    public void spaceReplacement20(char[] charArray, int trueLength) {
+        int spaceCount = 0;
+        for (int i = 0; i < trueLength; i++) {
+            if (charArray[i] == ' ') {
+                spaceCount++;
+            }
+        }
+
+        int newLength = trueLength + (spaceCount * 2);
+        for (int i = trueLength - 1; i > 0; i--) {
+            if (charArray[i] == ' ') {
+
+                charArray[newLength - 1] = '0';
+                charArray[newLength - 2] = '2';
+                charArray[newLength - 3] = '%';
+                newLength = newLength - 3;
+            } else {
+                charArray[newLength] = charArray[i];
+            }
+        }
+    }
+
     public static void main(String[] args) {
         StringsPractice sp = new StringsPractice();
         // System.out.println(sp.isPalindrome("ABCDEF", "ABCDFE"));
