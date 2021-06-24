@@ -86,9 +86,44 @@ public class StringsPractice {
         }
     }
 
+    /**
+     * 1.5 Implelent a method to perform basic string compression using the counts
+     * of repeated characters For exmaple, the string "aabcccccaaa" would become
+     * "a2b1c5a3". If the compressed string would not become smaller than the
+     * original string, your method should return the original string
+     */
+
+    private String compressString(String original) {
+        StringBuffer sb = new StringBuffer();
+        int i = 0;
+        while (i < original.length()) {
+            char current = original.charAt(i);
+            int charCount = 1;
+            i++;
+            while (i < original.length() && original.charAt(i) == current) {
+                charCount++;
+                i++;
+            }
+
+            sb.append(current).append(charCount);
+        }
+
+        return sb.length() >= original.length() ? original : sb.toString();
+    }
+
+    public void testCompressString() {
+        String test1 = "aabcccccaaa";
+        String test2 = "abcdefghijklmnop";
+
+        System.out.println(this.compressString(test1));
+        System.out.println(this.compressString(test2));
+    }
+
     public static void main(String[] args) {
         StringsPractice sp = new StringsPractice();
         // System.out.println(sp.isPalindrome("ABCDEF", "ABCDFE"));
         // System.out.println(sp.isPalindrome("ABCDEF", "ABCDXE"));
+
+        // sp.testCompressString();
     }
 }
