@@ -1,0 +1,77 @@
+package InterviewPractice.Java;
+
+public class DataStructuresPractice {
+    private class Node<T> {
+        Node next = null;
+        T data;
+
+        public Node(T data) {
+            this.data = data;
+        }
+
+        public void appendToTail(T data) {
+            var end = new Node<T>(data);
+
+            var current = this;
+            while (current.getNext() != null) {
+                current = current.getNext();
+            }
+
+            current.setNext(end);
+        }
+
+        public Node<T> getNext() {
+            return this.next;
+        }
+
+        public void setNext(Node<T> next) {
+            this.next = next;
+        }
+    }
+
+    /**
+     * Remove duplicates from a linked list
+     */
+    private void removeDuplicates1(Node head) {
+        if (head == null) {
+            return;
+        }
+
+        Node current = head;
+        while (current != null) {
+            Node runner = current;
+            while (runner.next != null) {
+                if (runner.data == runner.getNext().data) {
+                    runner.setNext(runner.getNext().getNext());
+                } else {
+                    runner = runner.next;
+                }
+            }
+        }
+    }
+
+    /**
+     * find the kth to last element of a singly linked list
+     */
+
+    private Node findTheKthElement(Node head, int k) {
+        Node runner = head;
+        for (int i = 0; i < k; i++) {
+            if (runner == null) {
+                return null;
+            }
+            runner = runner.getNext();
+        }
+
+        while (runner.getNext() != null) {
+            runner = runner.getNext();
+            head = head.getNext();
+        }
+
+        return head;
+    }
+
+    public static void main(String args[]) {
+
+    }
+}
