@@ -32,7 +32,7 @@ public class DataStructuresPractice {
     /**
      * Remove duplicates from a linked list
      */
-    private void removeDuplicates1(Node<T> head) {
+    private void removeDuplicates1(Node head) {
         if (head == null) {
             return;
         }
@@ -54,7 +54,7 @@ public class DataStructuresPractice {
      * find the kth to last element of a singly linked list
      */
 
-    private Node findTheKthElement(Node<T> head, int k) {
+    private Node findTheKthElement(Node head, int k) {
         var runner = head;
         for (int i = 0; i < k; i++) {
             if (runner == null) {
@@ -76,7 +76,7 @@ public class DataStructuresPractice {
      * 
      * @param nodeToDelete
      */
-    private void deleteNode(Node<T> nodeToDelete) {
+    private void deleteNode(Node nodeToDelete) {
         if (nodeToDelete.getNext() == null)
             nodeToDelete = null;
 
