@@ -52,6 +52,54 @@ public class SortingSearching {
         printArray(a1);
     }
 
+    /**
+     * Given a sorted array of n integers that has been roated an unknown number of
+     * times, write code to find an eleement in the array. You may assume that the
+     * array was originally sorted in increasing order
+     */
+    private int findIndexOfValueInArray(int[] a, int target, int left, int right) {
+        int middle = (a.length - 1) / 2;
+
+        if (target == a[middle])  {
+            return middle;
+        }
+
+        // Left side is normally sorted
+        if (a[left] < a[middle]) {
+            if (target < a[middle] && target >= a[left])
+                return findIndexOfValueInArray(a, target, left, middle - 1);
+            else {
+                return findIndexOfValueInArray(a, target, middle + 1, right)
+            }
+        }
+
+        // Right side is noramlly sorted
+        else if (a[middle] < a[right]) {
+            if (target > a[middle] && target <= a[middle]) {
+                return findIndexOfValueInArray(a, target, middle + 1, right);
+            } else {
+                return findIndexOfValueInArray(a, target, left, middle - 1);
+            }
+        }
+
+        // Left side is all duplicates
+        else if (a[left] == a[middle]) {
+            if (a[middle] != a[right]) {
+                return findIndexOfValueInArray(a, target, middle + 1, right);
+            } else {
+                int result = findIndexOfValueInArray(a, target, left, middle - 1);
+                if (result == -1) {
+                    return findIndexOfValueInArray(a, target, middle + 1, right);
+                }
+                else {
+                    return result;
+                }
+            }
+        }
+
+        return -1;
+    }
+
     public static void main(String[] args) {
         var testClass = new SortingSearching();
         testClass.testMergeTwoSortedArrays();
